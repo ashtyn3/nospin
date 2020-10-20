@@ -2,10 +2,12 @@ package file
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"nospin/config"
 	"nospin/user"
 	"nospin/util"
+	"os"
 	us "os/user"
 	"path/filepath"
 	"strings"
@@ -43,6 +45,10 @@ func Get(id string) File {
 					dir = append(dir, v)
 				}
 			}
+		}
+		if len(dir) == 0 {
+			fmt.Println("no file found with the name: " + strings.Join(group[1:], "/"))
+			os.Exit(0)
 		}
 		usr, err := us.Current()
 		if err != nil {
