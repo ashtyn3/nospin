@@ -6,7 +6,9 @@ import (
 	"log"
 	args "nospin/arg-parser"
 	"nospin/config"
+	"nospin/file"
 	"nospin/user"
+	"nospin/util"
 	"os"
 	us "os/user"
 )
@@ -29,6 +31,24 @@ func main() {
 				config.New(u)
 				fmt.Println("Created user:\n" + "Name: " + u.Name + "\nPublic Token: " + u.PubTok)
 			}
+		} else if v.Flag == "-put" || v.Flag == "-p" {
+			place, ok := util.FindParam(Args, "-o")
+			if ok == true {
+				o := Args[place]
+				file.Set(v.Param, o.Param)
+			} else {
+				file.Set(v.Param, "")
+			}
+		} else if v.Flag == "-o" {
+			v.Flag = ""
+		} else if v.Flag == "-del" || v.Flag == "-D" {
+			file.Del(v.Param)
+		} else if v.Flag == "-get" || v.Flag == "-g" {
+			r := file.Get(v.Param)
+			fmt.Println(string(r.Content))
+		} else {
+			fmt.Println("unknown flag " + v.Flag)
+			os.Exit(0)
 		}
 
 	}
