@@ -21,6 +21,15 @@ func main() {
 	home := usr.HomeDir
 	a := os.Args[1:]
 	Args := args.ArgParser(a)
+	if len(Args) == 0 {
+		fmt.Println("Usage:")
+		fmt.Println("nospin COMMAND")
+		fmt.Println("commands:")
+		fmt.Println("    -auth string                   Generates user with passed in email.")
+		fmt.Println("    -put, -p string [-o string]    Put file with path of -o option or with passed in path.")
+		fmt.Println("    -get, -g string                Get file with path.")
+		fmt.Println("    -del, -D string                Delete file with path.")
+	}
 	for _, v := range Args {
 		if v.Flag == "-auth" {
 			_, err := ioutil.ReadDir(home + "/nospin")
