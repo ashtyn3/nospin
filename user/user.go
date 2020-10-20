@@ -18,7 +18,7 @@ type User struct {
 	ID     string `json:"id"`
 }
 
-func Make(name string) {
+func Make(name string) User {
 	if strings.Index(name, "@") != -1 {
 		emailID := strings.Split(name, "@")
 		email := name
@@ -29,17 +29,18 @@ func Make(name string) {
 		prv, _ := util.RanString(32)
 		var user User = User{Name: email, PrvTok: prv, PubTok: pub, ID: UUID}
 		data, _ := json.Marshal(user)
-		z, err := zi.Zi("http://100.115.92.195:5000")
+		z, err := zi.Zi("https://b3b8cd3fd294.ngrok.io/")
 		if err != nil {
 			log.Fatalln(err)
 		}
 		z.Set(api.Pair{Key: user.ID, Value: string(data)})
+		return user
 	}
-
+	return User{}
 }
 
 func Get(name string) User {
-	z, err := zi.Zi("http://100.115.92.195:5000")
+	z, err := zi.Zi("https://b3b8cd3fd294.ngrok.io/")
 	if err != nil {
 		log.Fatalln(err)
 	}
