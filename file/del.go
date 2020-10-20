@@ -5,6 +5,7 @@ import (
 	"log"
 	"nospin/config"
 	"nospin/user"
+	"nospin/util"
 	us "os/user"
 	"path/filepath"
 	"strings"
@@ -31,7 +32,7 @@ func Del(path string) {
 				json.Unmarshal([]byte(v.Value), &file)
 				tok := z.PrvTok
 				group := strings.Split(file.Group, ",")
-				if _, ok := find(group, tok); ok == true || file.ID == z.ID {
+				if _, ok := util.Find(group, tok); ok == true || file.ID == z.ID {
 					dir = append(dir, v)
 				}
 			}

@@ -36,16 +36,18 @@ func Set(path string, endPath string) {
 		if user.ID == config.Get("name") {
 			p, _ := filepath.Abs(strings.Join(group[1:], "/"))
 			if endPath != "" {
-				fmt.Println(endPath)
 				data := File{Content: f, Name: endPath, ID: user.ID, Group: user.PrvTok}
 				item, _ := json.Marshal(data)
 				fID, _ := util.RanString(6)
 				z.Set(api.Pair{Key: user.ID + "/" + fID, Value: string(item)})
+				fmt.Println(data.Name)
 			} else {
 				data := File{Content: f, Name: strings.Replace(p, home+"/", "", 1), ID: user.ID, Group: user.PrvTok}
 				item, _ := json.Marshal(data)
 				fID, _ := util.RanString(6)
 				z.Set(api.Pair{Key: user.ID + "/" + fID, Value: string(item)})
+				fmt.Println(data.Name)
+
 			}
 		} else {
 			fmt.Println("Cannot set file for user without write access.")

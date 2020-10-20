@@ -1,6 +1,9 @@
 package util
 
-import "crypto/rand"
+import (
+	"crypto/rand"
+	args "nospin/arg-parser"
+)
 
 func GenBytes(n int) ([]byte, error) {
 	b := make([]byte, n)
@@ -23,4 +26,21 @@ func RanString(n int) (string, error) {
 		bytes[i] = letters[b%byte(len(letters))]
 	}
 	return string(bytes), nil
+}
+
+func Find(slice []string, val string) (int, bool) {
+	for i, item := range slice {
+		if item == val {
+			return i, true
+		}
+	}
+	return -1, false
+}
+func FindParam(slice []args.Flag, val string) (int, bool) {
+	for i, item := range slice {
+		if item.Flag == val {
+			return i, true
+		}
+	}
+	return -1, false
 }
