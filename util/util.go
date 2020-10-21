@@ -2,7 +2,10 @@ package util
 
 import (
 	"crypto/rand"
+	"io"
+	"log"
 	args "nospin/arg-parser"
+	"os"
 )
 
 func GenBytes(n int) ([]byte, error) {
@@ -43,4 +46,39 @@ func FindParam(slice []args.Flag, val string) (int, bool) {
 		}
 	}
 	return -1, false
+}
+
+func ChunkString(s string, chunkSize int) []string {
+	var chunks []string
+	runes := []rune(s)
+
+	if len(runes) == 0 {
+		return []string{s}
+	}
+
+	for i := 0; i < len(runes); i += chunkSize {
+		nn := i + chunkSize
+		if nn > len(runes) {
+			nn = len(runes)
+		}
+		chunks = append(chunks, string(runes[i:nn]))
+	}
+	return chunks
+}
+func ChunkFile(path string) []byte {
+	file, err := os.Open(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	buffer := make([]byte, 10000)
+	for {
+		if _, err := file.Read(buffer); err == io.EOF {
+			break
+		}
+
+		// do something with a buffer of 4Kb
+	}
+	return buffer
+
 }
