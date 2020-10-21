@@ -1,6 +1,7 @@
 package file
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -21,6 +22,7 @@ type File struct {
 	Name    string
 	Content []byte
 	Group   string
+	Image   bool
 }
 
 func Get(id string) File {
@@ -58,12 +60,30 @@ func Get(id string) File {
 		home := usr.HomeDir
 		p, _ := filepath.Abs(strings.Join(group[1:], "/"))
 		p = strings.Replace(p, home+"/", "", 1)
+		img := File{}
+		fFull := []string{}
+		image := false
 		for _, f := range dir {
 			var file File
 			json.Unmarshal([]byte(f.Value), &file)
-			if p == file.Name || file.Name == strings.Join(group[1:], "/") {
-				return file
+			if strings.HasSuffix(strings.Join(group[1:], "/"), ".png") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpg") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpeg") == true {
+				e, _ := base64.StdEncoding.DecodeString(string(file.Content))
+				file.Content = e
 			}
+			if p == file.Name || file.Name == strings.Join(group[1:], "/") {
+				if file.Image == true {
+					img = file
+					fFull = append(fFull, string(file.Content))
+					image = true
+				} else {
+					return file
+				}
+			}
+		}
+		if image == true {
+			val := strings.Join(fFull, "")
+			img.Content = []byte(val)
+			return img
 		}
 	}
 	return File{}

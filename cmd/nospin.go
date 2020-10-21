@@ -54,7 +54,13 @@ func main() {
 			file.Del(v.Param)
 		} else if v.Flag == "-get" || v.Flag == "-g" {
 			r := file.Get(v.Param)
+			// fmt.Println(r)
+			// if r.Image == true {
+			// d, _ := base64.StdEncoding.DecodeString(string(r.Content))
 			fmt.Println(string(r.Content))
+			// } else {
+			// fmt.Println(string(r.Content))
+			// }
 		} else {
 			fmt.Println("unknown flag " + v.Flag)
 			os.Exit(0)
