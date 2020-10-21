@@ -15,7 +15,7 @@ type Flag struct {
 func ArgParser(items []string) []Flag {
 	var valid []Flag
 	for i, arg := range items {
-		flagReg := regexp.MustCompile(`-(\w+)`)
+		flagReg := regexp.MustCompile(`^-(\w+)`)
 		byteArg := []byte(arg)
 		isFlag := flagReg.Match(byteArg)
 		if isFlag {
