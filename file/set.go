@@ -19,8 +19,8 @@ import (
 )
 
 func Set(path string, endPath string) {
-	// https://b3b8cd3fd294.ngrok.io/
-	z, err := zi.Zi("https://b3b8cd3fd294.ngrok.io/")
+	//
+	z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -53,9 +53,13 @@ func Set(path string, endPath string) {
 						fmt.Printf("\r\033[K%d/%d", i+1, len(d))
 						data = File{Content: []byte(c), Name: endPath, ID: user.ID, Group: user.PrvTok, Image: image}
 						n, _ := json.Marshal(data)
-						z.Set(api.Pair{Key: user.ID + "/" + fID, Value: string(n)})
+						// z.Set(api.Pair{Key: user.ID + "/" + fID, Value: string(n)})
+						z.Del(user.ID + "/" + fID)
+						z.Dump(api.Pair{Key: user.ID + "/" + fID, Value: string(n)}, fID+".zi")
 						// time.Sleep(1 * time.Second)
 					}
+					bFile, _ := json.Marshal(File{Name: endPath, Group: user.PrvTok, Image: image})
+					z.Set(api.Pair{Key: user.ID + "/" + fID + "/pointer", Value: string(bFile)})
 				} else {
 					z.Set(api.Pair{Key: user.ID + "/" + fID, Value: string(item)})
 				}

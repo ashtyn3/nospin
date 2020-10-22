@@ -26,7 +26,8 @@ type File struct {
 }
 
 func Get(id string) File {
-	z, err := zi.Zi("https://b3b8cd3fd294.ngrok.io/")
+	//
+	z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -71,13 +72,25 @@ func Get(id string) File {
 				file.Content = e
 			}
 			if p == file.Name || file.Name == strings.Join(group[1:], "/") {
+
 				if file.Image == true {
-					img = file
-					fFull = append(fFull, string(file.Content))
+					pulled := z.Get("^" + strings.Replace(f.Key, "/pointer", "", 1))
+					var chunks []api.Pair
+					json.Unmarshal([]byte(pulled.Value), &chunks)
 					image = true
-				} else {
+					for _, chunk := range chunks {
+						var filechunk File
+						img = filechunk
+						// fmt.Println(chunk)
+						json.Unmarshal([]byte(chunk.Value), &filechunk)
+						d, _ := base64.StdEncoding.DecodeString(string(filechunk.Content))
+						fFull = append(fFull, string(d))
+					}
+					file.Content = []byte(strings.Join(fFull, ""))
 					return file
 				}
+				return file
+
 			}
 		}
 		if image == true {

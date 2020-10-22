@@ -19,7 +19,7 @@ import (
 func Del(path string) {
 	if strings.Index(path, "/") != -1 {
 		group := strings.Split(path, "/")
-		z, err := zi.Zi("https://b3b8cd3fd294.ngrok.io/")
+		z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
 		if err != nil {
 			log.Fatalln(err)
 		}
