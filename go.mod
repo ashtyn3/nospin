@@ -2,4 +2,4 @@ module nospin
 
 go 1.15
 
-require github.com/vitecoin/zi v0.0.0-20201016175020-aa4b10cc5cf6
+require github.com/vitecoin/zi v0.0.0-20201022011838-5ea9a46e7dfb

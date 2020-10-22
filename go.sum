@@ -1,3 +1,15 @@
 github.com/common-nighthawk/go-figure v0.0.0-20200609044655-c4b36f998cf2/go.mod h1:mk5IQ+Y0ZeO87b858TlA645sVcEcbiX6YqP98kt+7+w=
 github.com/vitecoin/zi v0.0.0-20201016175020-aa4b10cc5cf6 h1:Jlo5RLUsaHJSihSp7TgvbwDPoNSEEBku4qI+w4Ra5A0=
 github.com/vitecoin/zi v0.0.0-20201016175020-aa4b10cc5cf6/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
+github.com/vitecoin/zi v0.0.0-20201021170033-e80496d47387 h1:ddDldhsZ+H03ErlujelTlV7Cnev/wtHiyaQXZHuHKtk=
+github.com/vitecoin/zi v0.0.0-20201021170033-e80496d47387/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
+github.com/vitecoin/zi v0.0.0-20201021171531-aff731d99f44 h1:EN6c0YPIKkuoHSNxhzyRjKeN8kCTEnSdeIr2iQQYT3U=
+github.com/vitecoin/zi v0.0.0-20201021171531-aff731d99f44/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
+github.com/vitecoin/zi v0.0.0-20201021190653-eb490a521e3e h1:fgdQ9+/zcOE9q253qPVhsRp36byEjNXMSv/8CaHbNus=
+github.com/vitecoin/zi v0.0.0-20201021190653-eb490a521e3e/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
+github.com/vitecoin/zi v0.0.0-20201021220745-e6ff3e4c3d78 h1:+Vi2FpTRwqNBqDdJLThHnJOlinFpW6WwWfstL/4vKIY=
+github.com/vitecoin/zi v0.0.0-20201021220745-e6ff3e4c3d78/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
+github.com/vitecoin/zi v0.0.0-20201022005733-4fb5a731f6b0 h1:e9qOAiO+6F7NJN8hGXIg7wJrXeFian66zKXXZPy8wHc=
+github.com/vitecoin/zi v0.0.0-20201022005733-4fb5a731f6b0/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
+github.com/vitecoin/zi v0.0.0-20201022011838-5ea9a46e7dfb h1:X39Z0jWfjAhb7XZ5dO+jVuAS9rZRh4XZEvKXKklDkVg=
+github.com/vitecoin/zi v0.0.0-20201022011838-5ea9a46e7dfb/go.mod h1:7mFsU8yM6cMPu7JxT7DdnzVV5hP8VHdMP7pmzdSMgvM=
