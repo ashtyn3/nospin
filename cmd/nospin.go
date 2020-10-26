@@ -33,6 +33,8 @@ func main() {
 		fmt.Println("    -put, -p string [-o string]    Put file with path of -o option or with passed in path.")
 		fmt.Println("    -get, -g string                Get file with path.")
 		fmt.Println("    -del, -D string                Delete file with path.")
+		fmt.Println("    -user, -u                      Prints information about current user.")
+
 	}
 	for _, v := range Args {
 		if v.Flag == "-auth" {
