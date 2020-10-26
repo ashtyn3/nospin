@@ -13,6 +13,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/joho/godotenv"
 	"github.com/vitecoin/zi/api"
 	zi "github.com/vitecoin/zi/pkg"
 )
@@ -26,8 +27,10 @@ type File struct {
 }
 
 func Get(id string) File {
-	//
-	z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
+	godotenv.Load("../.env")
+	url := os.Getenv("url")
+	pd := os.Getenv("pd")
+	z, err := zi.Zi(url, pd)
 	if err != nil {
 		log.Fatalln(err)
 	}

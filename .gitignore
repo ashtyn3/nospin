@@ -2,3 +2,4 @@ dump.zi
 bin/*
 release
 release.zip
+.env

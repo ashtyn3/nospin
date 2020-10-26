@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"log"
 	"nospin/util"
+	"os"
 	"strings"
 
+	"github.com/joho/godotenv"
 	"github.com/vitecoin/zi/api"
 	zi "github.com/vitecoin/zi/pkg"
 )
@@ -29,7 +31,10 @@ func Make(name string) User {
 		prv, _ := util.RanString(32)
 		var user User = User{Name: email, PrvTok: prv, PubTok: pub, ID: UUID}
 		data, _ := json.Marshal(user)
-		z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
+		godotenv.Load("../.env")
+		url := os.Getenv("url")
+		pd := os.Getenv("pd")
+		z, err := zi.Zi(url, pd)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -40,7 +45,10 @@ func Make(name string) User {
 }
 
 func Get(name string) User {
-	z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
+	godotenv.Load("../.env")
+	url := os.Getenv("url")
+	pd := os.Getenv("pd")
+	z, err := zi.Zi(url, pd)
 	if err != nil {
 		log.Fatalln(err)
 	}

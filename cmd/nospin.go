@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -11,6 +12,9 @@ import (
 	"nospin/util"
 	"os"
 	us "os/user"
+
+	"github.com/joho/godotenv"
+	zi "github.com/vitecoin/zi/pkg"
 )
 
 func main() {
@@ -61,6 +65,17 @@ func main() {
 			// } else {
 			// fmt.Println(string(r.Content))
 			// }
+		} else if v.Flag == "-user" || v.Flag == "-u" {
+			godotenv.Load("../.env")
+			url := os.Getenv("url")
+			pd := os.Getenv("pd")
+
+			z, _ := zi.Zi(url, pd)
+			var u user.User
+			raw := z.Get(config.Get("name"))
+			json.Unmarshal([]byte(raw.Value), &u)
+			fmt.Println("Name: " + u.Name + "\nPublic Token: " + u.PubTok)
+
 		} else {
 			fmt.Println("unknown flag " + v.Flag)
 			os.Exit(0)

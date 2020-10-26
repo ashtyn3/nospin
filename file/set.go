@@ -9,18 +9,23 @@ import (
 	"nospin/config"
 	"nospin/user"
 	"nospin/util"
+	"os"
 	us "os/user"
 
 	"path/filepath"
 	"strings"
 
+	"github.com/joho/godotenv"
 	"github.com/vitecoin/zi/api"
 	zi "github.com/vitecoin/zi/pkg"
 )
 
 func Set(path string, endPath string) {
 	//
-	z, err := zi.Zi("https://62c4ecd63d32.ngrok.io/")
+	godotenv.Load("../.env")
+	url := os.Getenv("url")
+	pd := os.Getenv("pd")
+	z, err := zi.Zi(url, pd)
 	if err != nil {
 		log.Fatalln(err)
 	}
