@@ -54,12 +54,17 @@ func Del(path string) {
 		home := usr.HomeDir
 		p, _ := filepath.Abs(strings.Join(group[1:], "/"))
 		p = strings.Replace(p, home+"/", "", 1)
+		deleted := false
 		for _, f := range dir {
 			var file File
 			json.Unmarshal([]byte(f.Value), &file)
 			if p == file.Name || file.Name == strings.Join(group[1:], "/") {
 				z.Del(f.Key)
+				deleted = true
 			}
+		}
+		if deleted == false {
+			fmt.Println("no file found with the name: " + strings.Join(group[1:], "/"))
 		}
 	}
 }
