@@ -3,3 +3,5 @@ bin/*
 release
 release.zip
 .env
+build.sh
+release.sh

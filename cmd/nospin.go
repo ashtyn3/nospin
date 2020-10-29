@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	args "nospin/arg-parser"
+	"nospin/auth"
 	"nospin/config"
 	"nospin/file"
 	"nospin/user"
@@ -13,11 +15,11 @@ import (
 	"os"
 	us "os/user"
 
-	"github.com/joho/godotenv"
-	zi "github.com/vitecoin/zi/pkg"
+	zi "github.com/ashtyn3/zi/pkg"
 )
 
 func main() {
+	auth.Auth()
 	usr, err := us.Current()
 	if err != nil {
 		log.Fatal(err)
@@ -62,17 +64,18 @@ func main() {
 			r := file.Get(v.Param)
 			// fmt.Println(r)
 			// if r.Image == true {
-			// d, _ := base64.StdEncoding.DecodeString(string(r.Content))
-			fmt.Println(string(r.Content))
+			d, _ := base64.StdEncoding.DecodeString(string(r.Content))
+			fmt.Println(string(d))
+
+			// string(r.Content)
 			// } else {
 			// fmt.Println(string(r.Content))
 			// }
 		} else if v.Flag == "-user" || v.Flag == "-u" {
-			godotenv.Load("../.env")
-			url := os.Getenv("url")
-			pd := os.Getenv("pd")
-
-			z, _ := zi.Zi(url, pd)
+			z, err := zi.Zi(auth.Url, auth.Pd)
+			if err != nil {
+				fmt.Println(err)
+			}
 			var u user.User
 			raw := z.Get(config.Get("name"))
 			json.Unmarshal([]byte(raw.Value), &u)

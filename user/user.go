@@ -3,13 +3,12 @@ package user
 import (
 	"encoding/json"
 	"log"
+	"nospin/auth"
 	"nospin/util"
-	"os"
 	"strings"
 
-	"github.com/joho/godotenv"
-	"github.com/vitecoin/zi/api"
-	zi "github.com/vitecoin/zi/pkg"
+	"github.com/ashtyn3/zi/api"
+	zi "github.com/ashtyn3/zi/pkg"
 )
 
 // User is the structure for users stored
@@ -31,10 +30,10 @@ func Make(name string) User {
 		prv, _ := util.RanString(32)
 		var user User = User{Name: email, PrvTok: prv, PubTok: pub, ID: UUID}
 		data, _ := json.Marshal(user)
-		godotenv.Load("../.env")
-		url := os.Getenv("url")
-		pd := os.Getenv("pd")
-		z, err := zi.Zi(url, pd)
+		// godotenv.Load("../.env")
+		// url := os.Getenv("url")
+		// pd := os.Getenv("pd")
+		z, err := zi.Zi(auth.Url, auth.Pd)
 		if err != nil {
 			log.Fatalln(err)
 		}
@@ -45,10 +44,10 @@ func Make(name string) User {
 }
 
 func Get(name string) User {
-	godotenv.Load("../.env")
-	url := os.Getenv("url")
-	pd := os.Getenv("pd")
-	z, err := zi.Zi(url, pd)
+	// godotenv.Load("../.env")
+	// url := os.Getenv("url")
+	// pd := os.Getenv("pd")
+	z, err := zi.Zi(auth.Url, auth.Pd)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -6,26 +6,25 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"nospin/auth"
 	"nospin/config"
 	"nospin/user"
 	"nospin/util"
-	"os"
 	us "os/user"
 
 	"path/filepath"
 	"strings"
 
-	"github.com/joho/godotenv"
-	"github.com/vitecoin/zi/api"
-	zi "github.com/vitecoin/zi/pkg"
+	"github.com/ashtyn3/zi/api"
+	zi "github.com/ashtyn3/zi/pkg"
 )
 
 func Set(path string, endPath string) {
 	//
-	godotenv.Load("../.env")
-	url := os.Getenv("url")
-	pd := os.Getenv("pd")
-	z, err := zi.Zi(url, pd)
+	// godotenv.Load("../.env")
+	// url := os.Getenv("url")
+	// pd := os.Getenv("pd")
+	z, err := zi.Zi(auth.Url, auth.Pd)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -72,6 +71,7 @@ func Set(path string, endPath string) {
 				fmt.Printf("\033[F")
 				fmt.Println("\n" + data.Name)
 			} else {
+				f = []byte(base64.StdEncoding.EncodeToString(f))
 				data := File{Content: f, Name: strings.Replace(p, home+"/", "", 1), ID: user.ID, Group: user.PrvTok, Image: image}
 				item, _ := json.Marshal(data)
 				fID, _ := util.RanString(6)

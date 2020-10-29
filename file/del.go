@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"nospin/auth"
 	"nospin/config"
 	"nospin/user"
 	"nospin/util"
@@ -12,18 +13,17 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/joho/godotenv"
-	"github.com/vitecoin/zi/api"
-	zi "github.com/vitecoin/zi/pkg"
+	"github.com/ashtyn3/zi/api"
+	zi "github.com/ashtyn3/zi/pkg"
 )
 
 func Del(path string) {
 	if strings.Index(path, "/") != -1 {
 		group := strings.Split(path, "/")
-		godotenv.Load("../.env")
-		url := os.Getenv("url")
-		pd := os.Getenv("pd")
-		z, err := zi.Zi(url, pd)
+		// godotenv.Load("../.env")
+		// url := os.Getenv("url")
+		// pd := os.Getenv("pd")
+		z, err := zi.Zi(auth.Url, auth.Pd)
 		if err != nil {
 			log.Fatalln(err)
 		}
