@@ -7,9 +7,14 @@ body {
 }
 p,
 h2,
-h3 {
+h3,
+h1,
+a {
     font-family: "Work Sans";
     color: #f8f8f8;
+}
+h1 > a {
+    text-decoration: none;
 }
 #article {
     width: 100%;
