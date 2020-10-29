@@ -24,7 +24,7 @@ func Set(path string, endPath string) {
 	// godotenv.Load("../.env")
 	// url := os.Getenv("url")
 	// pd := os.Getenv("pd")
-	z, err := zi.Zi(auth.Url, auth.Pd)
+	z, err := zi.Zi(auth.Auth().Url, auth.Auth().Pd)
 	if err != nil {
 		log.Fatalln(err)
 	}

@@ -72,7 +72,7 @@ func main() {
 			// fmt.Println(string(r.Content))
 			// }
 		} else if v.Flag == "-user" || v.Flag == "-u" {
-			z, err := zi.Zi(auth.Url, auth.Pd)
+			z, err := zi.Zi(auth.Auth().Url, auth.Auth().Pd)
 			if err != nil {
 				fmt.Println(err)
 			}
