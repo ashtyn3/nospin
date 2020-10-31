@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	us "nospin/user"
@@ -36,7 +37,12 @@ func Get(name string) string {
 	home := usr.HomeDir
 	f, fErr := ioutil.ReadFile(home + "/nospin/config")
 	if fErr != nil {
-		log.Fatalln(fErr)
+		if os.IsNotExist(fErr) == true {
+			fmt.Println("No config file found.")
+			os.Exit(0)
+		} else {
+			log.Fatalln(fErr)
+		}
 	}
 	file := strings.Split(string(f), "\n")
 	for _, l := range file {

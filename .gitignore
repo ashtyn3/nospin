@@ -5,3 +5,4 @@ release.zip
 .env
 build.sh
 release.sh
+*.log
