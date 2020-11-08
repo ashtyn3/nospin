@@ -70,8 +70,9 @@ func Get(id string) File {
 		dirContent := []string{}
 		for _, f := range dir {
 			var file File
+			// fmt.Println(f.Value)
 			json.Unmarshal([]byte(f.Value), &file)
-			if strings.HasSuffix(strings.Join(group[1:], "/"), ".png") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpg") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpeg") == true {
+			if strings.HasSuffix(strings.Join(group[1:], "/"), ".png") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpg") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpeg") == true || file.Image == true {
 				e, _ := base64.StdEncoding.DecodeString(string(file.Content))
 				file.Content = e
 			}

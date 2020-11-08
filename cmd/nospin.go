@@ -10,10 +10,13 @@ import (
 	"nospin/auth"
 	"nospin/config"
 	"nospin/file"
+	"nospin/server"
+	"nospin/share"
 	"nospin/user"
 	"nospin/util"
 	"os"
 	us "os/user"
+	"strings"
 
 	zi "github.com/ashtyn3/zi/pkg"
 )
@@ -36,7 +39,6 @@ func main() {
 		fmt.Println("    -get, -g string                Get file with path.")
 		fmt.Println("    -del, -D string                Delete file with path.")
 		fmt.Println("    -user, -u                      Prints information about current user.")
-
 	}
 	for _, v := range Args {
 		if v.Flag == "-auth" {
@@ -52,12 +54,12 @@ func main() {
 			place, ok := util.FindParam(Args, "-o")
 			if ok == true {
 				o := Args[place]
-				file.Set(v.Param, o.Param)
+				file.Set(v.Param, o.Param, file.Ops{})
 			} else {
-				file.Set(v.Param, "")
+				file.Set(v.Param, "", file.Ops{})
 			}
-		} else if v.Flag == "-o" {
-			v.Flag = ""
+		} else if v.Flag == "-o" || v.Flag == "-add" || v.Flag == "-remove" {
+			v.Flag += ""
 		} else if v.Flag == "-del" || v.Flag == "-D" {
 			file.Del(v.Param)
 		} else if v.Flag == "-get" || v.Flag == "-g" {
@@ -79,8 +81,30 @@ func main() {
 			var u user.User
 			raw := z.Get(config.Get("name"))
 			json.Unmarshal([]byte(raw.Value), &u)
+			if u.Name == "" {
+				fmt.Println("Could not find your account.")
+				os.Exit(0)
+			}
 			fmt.Println("Name: " + u.Name + "\nPublic Token: " + u.PubTok)
 
+		} else if v.Flag == "-share" || v.Flag == "-s" {
+			place, ok := util.FindParam(Args, "-add")
+			rPlace, okRemove := util.FindParam(Args, "-remove")
+			if ok == true {
+				o := Args[place]
+				for _, email := range strings.Split(o.Param, ",") {
+					share.Add(email, v.Param)
+				}
+			} else if okRemove == true {
+				o := Args[rPlace]
+				for _, email := range strings.Split(o.Param, ",") {
+					share.Remove(email, v.Param)
+				}
+			} else {
+				fmt.Println("Needs name of person to share with. Use -p to state that.")
+			}
+		} else if v.Flag == "-serve" {
+			server.Run()
 		} else {
 			fmt.Println("unknown flag " + v.Flag)
 			os.Exit(0)

@@ -59,7 +59,12 @@ func Del(path string) {
 			var file File
 			json.Unmarshal([]byte(f.Value), &file)
 			if p == file.Name || file.Name == strings.Join(group[1:], "/") {
-				z.Del(f.Key)
+				if file.Image == true {
+					z.Del(f.Key)
+					z.Del(strings.Replace(f.Key, "/pointer", "", 1))
+				} else {
+					z.Del(f.Key)
+				}
 				deleted = true
 			}
 		}
