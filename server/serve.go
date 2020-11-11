@@ -36,6 +36,7 @@ func Run() {
 		F, _ := os.Create(f.Name)
 		F.WriteString(f.Content)
 		defer F.Close()
+		defer os.Remove(f.Name)
 		file.Set(f.Username+"/"+f.Name, f.Name, file.Ops{})
 		return c.SendStatus(202)
 	})
@@ -56,6 +57,7 @@ func Run() {
 		content, _ := base64.StdEncoding.DecodeString(string(file.Content))
 		return c.SendString(string(content))
 	})
+
 	fmt.Println("listening on 3000")
 	app.Listen(":3000")
 }

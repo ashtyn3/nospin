@@ -82,6 +82,7 @@ func Get(id string) File {
 				dirContent = append(dirContent, fName)
 			} else if p == file.Name || file.Name == strings.Join(group[1:], "/") {
 				if file.Image == true {
+					fmt.Println(file)
 					pulled := z.Get("^" + strings.Replace(f.Key, "/pointer", "", 1))
 					var chunks []api.Pair
 					json.Unmarshal([]byte(pulled.Value), &chunks)
