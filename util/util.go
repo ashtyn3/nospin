@@ -4,8 +4,8 @@ import (
 	"crypto/rand"
 	"io"
 	"log"
-	args "nospin/arg-parser"
 	"os"
+	args "qoute/arg-parser"
 )
 
 func GenBytes(n int) ([]byte, error) {

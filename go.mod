@@ -1,4 +1,4 @@
-module nospin
+module qoute
 
 go 1.15
 

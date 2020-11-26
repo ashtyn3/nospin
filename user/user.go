@@ -3,8 +3,8 @@ package user
 import (
 	"encoding/json"
 	"log"
-	"nospin/auth"
-	"nospin/util"
+	"qoute/auth"
+	"qoute/util"
 	"strings"
 
 	"github.com/ashtyn3/zi/api"

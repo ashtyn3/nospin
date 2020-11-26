@@ -24,7 +24,7 @@
         <meta name="theme-color" content="#ffffff" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Nospin</title>
+        <title>Qoute</title>
         <link rel="stylesheet" href="./static/css/style.css" />
 
         <script
@@ -47,13 +47,13 @@
     <body>
         <main class="article">
             <article>
-                <h1><a href="/nospin/">Nospin</a></h1>
+                <h1><a href="/qoute/">Qoute</a></h1>
                 <img
                     src="static/images/logo.svg"
-                    alt="logo of Nospin"
+                    alt="logo of Qoute"
                     id="logo"
                 />
-                <p id="phrase">Basics of Nospin</p>
+                <p id="phrase">Basics of Qoute</p>
                 <div class="content">
                     <p>
                         <b>
@@ -61,35 +61,35 @@
                             write this so thank you for taking the time to read
                             it.
                         </b>
-                        Nospin is a simple filesystem designed to make the cloud
-                        more accessible. Nospin allows you to synchronize all of
+                        Qoute is a simple filesystem designed to make the cloud
+                        more accessible. Qoute allows you to synchronize all of
                         your devices file systems into one. Here is an example:
                     </p>
                     <p>
                         Lets say Marvin has a computer for work and a computer
                         for home as a lot people do. Well one day Marvin forgot
-                        his work computer at work (Ooh No). With Nospin All
+                        his work computer at work (Ooh No). With Qoute All
                         Marvin has to do is open his home computers terminal and
-                        grab all files he needs from Nospin to continue his work
+                        grab all files he needs from Qoute to continue his work
                         from home.
                     </p>
-                    <h2 id="Usage">Nospin usage</h2>
+                    <h2 id="Usage">Qoute usage</h2>
                     <p>
-                        So far Nospin has your basic options for any filesystem,
-                        read, write, and delete. To get started using Nospin
+                        So far Qoute has your basic options for any filesystem,
+                        read, write, and delete. To get started using Qoute
                         first install the latest version from the github
                         releases. Once you downloaded the zip file that should
                         have a name that looks similar to
-                        <i>nospin-1.1.0.zip</i>. Extract that file and install
-                        the binary file to your computer currently Nospin only
+                        <i>Qoute-1.1.0.zip</i>. Extract that file and install
+                        the binary file to your computer currently Qoute only
                         supports Mac and Unix based operating systems.
                     </p>
-                    <p>To make sure nospin is working on your computer run:</p>
+                    <p>To make sure Qoute is working on your computer run:</p>
 
-                    <pre><code class="bash">nospin</code></pre>
+                    <pre><code class="bash">Qoute</code></pre>
                     <p>It should return something that looks like this:</p>
                     <pre><code class="bash">Usage:
-nospin COMMAND
+Qoute COMMAND
 commands:
     -auth string                   Generates user with passed in email.
     -put, -p string [-o string]    Put file with path of -o option or with passed in path.
@@ -101,24 +101,23 @@ commands:
                         Before you start uploading stuff you will need to
                         register a user. You can do this with the following:
                     </p>
-                    <pre><code class="bash">nospin -auth marvin@example.com</code></pre>
+                    <pre><code class="bash">Qoute -auth marvin@example.com</code></pre>
                     <p>
-                        General rule of thumb is when making a nospin user
-                        always use your primary email address as the username.
-                        The auth command will return your public key and your
-                        email.
+                        General rule of thumb is when making a Qoute user always
+                        use your primary email address as the username. The auth
+                        command will return your public key and your email.
                     </p>
                     <p>
                         To test to make sure the user was created successfully
                         you can run:
                     </p>
-                    <pre><code class="bash">nospin -user</code></pre>
+                    <pre><code class="bash">Qoute -user</code></pre>
                     <p>This should return your public key and email.</p>
                     <h3 id="file-methods">File methods</h3>
                     <p>
-                        Nospin works off tries to duplicate your original file
+                        Qoute works off tries to duplicate your original file
                         structure across all the cloud. So when uploading a file
-                        pass in a relative file path and nospin will use that
+                        pass in a relative file path and Qoute will use that
                         path as the path to the file.
                     </p>
                     <p>For example:</p>
@@ -130,18 +129,18 @@ commands:
    └── family_christmas_2019.jpeg
 </code></pre>
                     <p>
-                        Lets say you want to upload Essay.txt to Nospin and your
+                        Lets say you want to upload Essay.txt to Qoute and your
                         currently in the example_dir directory. Well all you
                         have to do is:
                     </p>
-                    <pre><code class="bash">nospin -put marvin@example.com/Documents/Essay.txt</code></pre>
+                    <pre><code class="bash">Qoute -put marvin@example.com/Documents/Essay.txt</code></pre>
                     <p>
-                        This will upload the file to Nospin with the name
+                        This will upload the file to Qoute with the name
                         <i>Documents/Essay.txt</i>. If you wanted to do a custom
                         file name for when its uploaded just include a -o flag.
                         For example you can do:
                     </p>
-                    <pre><code class="bash">nospin -put marvin@example.com/Documents/Essay.txt -o essay.md</code></pre>
+                    <pre><code class="bash">Qoute -put marvin@example.com/Documents/Essay.txt -o essay.md</code></pre>
                     <p>
                         This will upload the file <i>Documents/Essay.txt</i> as
                         <i>essay.md</i>.
@@ -150,33 +149,33 @@ commands:
                         To get a file you can just do that same thing as put
                         except with -get.
                     </p>
-                    <pre><code class="bash">nospin -get marvin@example.com/essay.md</code></pre>
+                    <pre><code class="bash">Qoute -get marvin@example.com/essay.md</code></pre>
                     <p>
                         The get method will print out the contents of that file
                         to the console. If you don't want this to happen and
                         instead you want to write the contents to a file just do
                         the following:
                     </p>
-                    <pre><code class="bash">nospin -get marvin@example.com/essay.md > newFile.md</code></pre>
+                    <pre><code class="bash">Qoute -get marvin@example.com/essay.md > newFile.md</code></pre>
                     <p>
                         This will write the contents of the <i>essay.md</i> in
-                        nospin to the file <i>newFile.md</i> on your local
+                        Qoute to the file <i>newFile.md</i> on your local
                         computer.
                     </p>
                     <p>You can also get a folder with the following.</p>
-                    <pre><code class="bash">nospin -get marvin@example.com/someFolder/</code></pre>
+                    <pre><code class="bash">Qoute -get marvin@example.com/someFolder/</code></pre>
                     <p>
                         This will return the names of the files in the folder
-                        <i>someFolder</i> on Nospin.
+                        <i>someFolder</i> on Qoute.
                     </p>
                     <p>
                         To delete a file is really simple all you have to know
                         is the name of the file you want to delete.
                     </p>
-                    <pre><code class="bash">nospin -del marvin@example.com/essay.md</code></pre>
+                    <pre><code class="bash">Qoute -del marvin@example.com/essay.md</code></pre>
                     <p>
                         This will delete the file at the path specified on
-                        nospin.
+                        Qoute.
                     </p>
                 </div>
             </article>

@@ -2,10 +2,10 @@ package share
 
 import (
 	"fmt"
-	"nospin/file"
-	"nospin/user"
-	"nospin/util"
 	"os"
+	"qoute/file"
+	"qoute/user"
+	"qoute/util"
 	"strings"
 )
 
