@@ -16,17 +16,18 @@ func New(u us.User) {
 		log.Fatal(err)
 	}
 	home := usr.HomeDir
-	os.Mkdir(home+"/qoute", 0777)
-	f, _ := os.OpenFile(home+"/qoute/config", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	os.Mkdir(home+"/.qoute", 0777)
+	f, _ := os.OpenFile(home+"/.qoute/config", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	f.WriteString("name=" + u.ID)
 }
+
 func Set(name string, value string) {
 	usr, err := user.Current()
 	if err != nil {
 		log.Fatal(err)
 	}
 	home := usr.HomeDir
-	f, _ := os.OpenFile(home+"/qoute/config", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, _ := os.OpenFile(home+"/.qoute/config", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	f.WriteString("\n" + name + "=" + value)
 }
 func Get(name string) string {
@@ -35,7 +36,7 @@ func Get(name string) string {
 		log.Fatal(err)
 	}
 	home := usr.HomeDir
-	f, fErr := ioutil.ReadFile(home + "/qoute/config")
+	f, fErr := ioutil.ReadFile(home + "/.qoute/config")
 	if fErr != nil {
 		if os.IsNotExist(fErr) == true {
 			fmt.Println("No config file found.")

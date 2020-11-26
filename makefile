@@ -12,3 +12,4 @@ install:
 	mkdir bin
 	go build -o bin/qoute cmd/qoute.go
 	sudo mv bin/qoute /usr/bin
+	# sudo mv web /usr/bin

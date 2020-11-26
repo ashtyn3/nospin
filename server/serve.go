@@ -9,6 +9,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/joho/godotenv"
 )
 
 type putFile struct {
@@ -31,8 +32,16 @@ func Run() {
 		MaxAge:           0,
 	}
 	app.Use(cors.New(ConfigDefault))
-	app.Static("/", "../web")
+	godotenv.Load("../env")
+	// var path string
+	// if os.Getenv("mode") == "dev" {
+	// 	path = "../web"
+	// } else {
+	// 	path = "./Qoute/web"
+	// }
+	path, _ := os.UserHomeDir()
 
+	app.Static("/", path+"/.qoute/share/web")
 	app.Post("/put", func(c *fiber.Ctx) error {
 		f := new(putFile)
 		c.BodyParser(f)
@@ -55,11 +64,11 @@ func Run() {
 		file := file.Get(f.Username + "/" + f.Name)
 		if file.Image == true {
 			// fmt.Println(file)
-			// content, _ := base64.StdEncoding.DecodeString(string(file.Content))
+			content, _ := base64.StdEncoding.DecodeString(string(file.Content))
 
 			// file.Content = content
 			// d, _ := json.Marshal(file)
-			return c.SendString(string(file.Content))
+			return c.SendString(string(content))
 		}
 		content, _ := base64.StdEncoding.DecodeString(string(file.Content))
 		return c.SendString(string(content))
