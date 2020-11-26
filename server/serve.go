@@ -2,6 +2,7 @@ package server
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"nospin/file"
 	"os"
@@ -11,9 +12,9 @@ import (
 )
 
 type putFile struct {
-	Name     string `json:name`
-	Username string `json:username`
-	Content  string `json:content`
+	Name     string `json:"name"`
+	Username string `json:"username"`
+	Content  string `json:"content"`
 }
 
 func Run() {
@@ -30,6 +31,8 @@ func Run() {
 		MaxAge:           0,
 	}
 	app.Use(cors.New(ConfigDefault))
+	app.Static("/", "../web")
+
 	app.Post("/put", func(c *fiber.Ctx) error {
 		f := new(putFile)
 		c.BodyParser(f)
@@ -48,14 +51,19 @@ func Run() {
 	})
 	app.Post("/get", func(c *fiber.Ctx) error {
 		f := new(putFile)
-		c.BodyParser(f)
+		json.Unmarshal(c.Body(), f)
 		file := file.Get(f.Username + "/" + f.Name)
 		if file.Image == true {
-			return c.SendString(string(file.Content))
+			// fmt.Println(file)
+			// content, _ := base64.StdEncoding.DecodeString(string(file.Content))
 
+			// file.Content = content
+			// d, _ := json.Marshal(file)
+			return c.SendString(string(file.Content))
 		}
 		content, _ := base64.StdEncoding.DecodeString(string(file.Content))
 		return c.SendString(string(content))
+
 	})
 
 	fmt.Println("listening on 3000")

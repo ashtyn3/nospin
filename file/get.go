@@ -27,6 +27,7 @@ type File struct {
 }
 
 func Get(id string) File {
+	var dirString string
 	// godotenv.Load("../.env")
 	// url := os.Getenv("url")
 	// pd := os.Getenv("pd")
@@ -70,19 +71,20 @@ func Get(id string) File {
 		dirContent := []string{}
 		for _, f := range dir {
 			var file File
-			// fmt.Println(f.Value)
 			json.Unmarshal([]byte(f.Value), &file)
 			if strings.HasSuffix(strings.Join(group[1:], "/"), ".png") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpg") == true || strings.HasSuffix(strings.Join(group[1:], "/"), ".jpeg") == true || file.Image == true {
 				e, _ := base64.StdEncoding.DecodeString(string(file.Content))
 				file.Content = e
 			}
 			// s := strings.Split(file.Name, "/"); s[len(s) - 1]
-			if strings.HasSuffix(id, "/") == true && strings.Contains(file.Name, strings.Join(group[1:], "/")) {
-				fName := strings.Replace(file.Name, strings.Join(group[1:], "/"), "", -1)
+			if strings.Join(group[1:], "/") == "/" {
+				fName := file.Name
+				dirContent = append(dirContent, fName)
+			} else if strings.HasSuffix(id, "/") == true && strings.Contains(file.Name, strings.Join(group[1:], "/")) && id != "/" {
+				fName := strings.Replace(file.Name, strings.Join(group[1:], "/"), "", 1)
 				dirContent = append(dirContent, fName)
 			} else if p == file.Name || file.Name == strings.Join(group[1:], "/") {
 				if file.Image == true {
-					fmt.Println(file)
 					pulled := z.Get("^" + strings.Replace(f.Key, "/pointer", "", 1))
 					var chunks []api.Pair
 					json.Unmarshal([]byte(pulled.Value), &chunks)
@@ -90,7 +92,6 @@ func Get(id string) File {
 					for _, chunk := range chunks {
 						var filechunk File
 						img = filechunk
-						// fmt.Println(chunk)
 						json.Unmarshal([]byte(chunk.Value), &filechunk)
 						d, _ := base64.StdEncoding.DecodeString(string(filechunk.Content))
 						fFull = append(fFull, string(d))
@@ -103,11 +104,12 @@ func Get(id string) File {
 			}
 		}
 		if len(dirContent) != 0 {
-			fmt.Printf("Contents of " + strings.Join(group[1:], "/") + ":\n")
+			dirString += fmt.Sprintln("Contents of " + strings.Join(group[1:], "/") + ":")
 			for _, d := range dirContent {
-				fmt.Println(d)
+				dirString += d + "\n"
 			}
-			fmt.Printf("\033[F")
+			// fmt.Printf("\033[F")
+			return File{Content: []byte(base64.StdEncoding.EncodeToString([]byte(dirString)))}
 		}
 		if image == true {
 			val := strings.Join(fFull, "")
