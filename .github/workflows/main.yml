@@ -7,7 +7,7 @@ jobs:
             - name: repo-sync
               uses: wei/git-sync@v2
               with:
-                  source_repo: "https://github.com/qoute/qoute.git"
+                  source_repo: "https://github.com/qoutedev/qoute.git"
                   source_branch: "master"
                   destination_repo: "git@git.gitmono.com:qoute.git"
                   destination_branch: "master"
