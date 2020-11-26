@@ -6,16 +6,16 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	args "nospin/arg-parser"
-	"nospin/auth"
-	"nospin/config"
-	"nospin/file"
-	"nospin/server"
-	"nospin/share"
-	"nospin/user"
-	"nospin/util"
 	"os"
 	us "os/user"
+	args "qoute/arg-parser"
+	"qoute/auth"
+	"qoute/config"
+	"qoute/file"
+	"qoute/server"
+	"qoute/share"
+	"qoute/user"
+	"qoute/util"
 	"strings"
 
 	zi "github.com/ashtyn3/zi/pkg"
@@ -32,7 +32,7 @@ func main() {
 	Args := args.ArgParser(a)
 	if len(Args) == 0 {
 		fmt.Println("Usage:")
-		fmt.Println("nospin COMMAND")
+		fmt.Println("qoute COMMAND")
 		fmt.Println("commands:")
 		fmt.Println("    -auth string                                           Generates user with passed in email.")
 		fmt.Println("    -put, -p string [-o string]                            Put file with path of -o option or with passed in path.")
@@ -45,9 +45,9 @@ func main() {
 	}
 	for _, v := range Args {
 		if v.Flag == "-auth" {
-			_, err := ioutil.ReadDir(home + "/nospin")
+			_, err := ioutil.ReadDir(home + "/qoute")
 			if os.IsNotExist(err) == false {
-				fmt.Println("You already have an active nospin user on this device.")
+				fmt.Println("You already have an active qoute user on this device.")
 			} else {
 				u := user.Make(v.Param)
 				config.New(u)
