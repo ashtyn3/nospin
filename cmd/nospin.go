@@ -39,6 +39,8 @@ func main() {
 		fmt.Println("    -get, -g string                Get file with path.")
 		fmt.Println("    -del, -D string                Delete file with path.")
 		fmt.Println("    -user, -u                      Prints information about current user.")
+		fmt.Println("    -serve, -S                     Starts web interface server on port 3000.")
+
 	}
 	for _, v := range Args {
 		if v.Flag == "-auth" {
@@ -103,7 +105,7 @@ func main() {
 			} else {
 				fmt.Println("Needs name of person to share with. Use -p to state that.")
 			}
-		} else if v.Flag == "-serve" {
+		} else if v.Flag == "-serve" || v.Flag == "-S" {
 			server.Run()
 		} else {
 			fmt.Println("unknown flag " + v.Flag)
