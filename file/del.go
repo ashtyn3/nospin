@@ -61,7 +61,7 @@ func Del(path string) {
 			if p == file.Name || file.Name == strings.Join(group[1:], "/") {
 				if file.Image == true {
 					z.Del(f.Key)
-					z.Del(strings.Replace(f.Key, "/pointer", "", 1))
+					z.Del("^" + strings.Replace(f.Key, "/pointer", "", 1))
 				} else {
 					z.Del(f.Key)
 				}
