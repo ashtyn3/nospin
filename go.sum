@@ -2,6 +2,8 @@ github.com/andybalholm/brotli v1.0.0 h1:7UCwP93aiSfvWpapti8g88vVVGp2qqtGyePsSuDa
 github.com/andybalholm/brotli v1.0.0/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/ashtyn3/zi v0.0.0-20201028192814-914600eeb19e h1:QVa9wApskvX7U+MzWCPT1IEaBIIjpqWHIzfd11FncrM=
 github.com/ashtyn3/zi v0.0.0-20201028192814-914600eeb19e/go.mod h1:883VozWuoJsYuq6Xon/0Omvh18DuF9HdhfQdERcOHq4=
+github.com/bradfitz/goimports v0.0.0-20141211234242-919f4f2bcea0 h1:TQz69uMXMJrR0Agp3kNhG6hpMmqOuUoxpLntbHj850g=
+github.com/bradfitz/goimports v0.0.0-20141211234242-919f4f2bcea0/go.mod h1:5Gk++YnYbTwQNvA0bQ4Xcaw1TvtW6jcs39o4Jyez75E=
 github.com/common-nighthawk/go-figure v0.0.0-20200609044655-c4b36f998cf2/go.mod h1:mk5IQ+Y0ZeO87b858TlA645sVcEcbiX6YqP98kt+7+w=
 github.com/gofiber/fiber v1.14.6 h1:QRUPvPmr8ijQuGo1MgupHBn8E+wW0IKqiOvIZPtV70o=
 github.com/gofiber/fiber/v2 v2.1.4 h1:3PMynvfkvMTXouNe9vAyGFkLXk8JM1DlH+k6FJvVoTc=
@@ -29,4 +31,5 @@ golang.org/x/sys v0.0.0-20201107080550-4d91cf3a1aaf h1:kt3wY1Lu5MJAnKTfoMR52Cu4g
 golang.org/x/sys v0.0.0-20201107080550-4d91cf3a1aaf/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.3/go.mod h1:5Zoc/QRtKVWzQhOtBMvqHzDpF6irO9z98xDceosuGiQ=
+golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e h1:FDhOuMEY4JVRztM/gsbk+IKUQ8kj74bxZrgw87eMMVc=
 golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=

@@ -30,6 +30,7 @@ func main() {
 	home := usr.HomeDir
 	a := os.Args[1:]
 	Args := args.ArgParser(a)
+
 	if len(Args) == 0 {
 		fmt.Println("Usage:")
 		fmt.Println("qoute COMMAND")
