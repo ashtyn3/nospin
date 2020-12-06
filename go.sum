@@ -2,6 +2,8 @@ github.com/andybalholm/brotli v1.0.0 h1:7UCwP93aiSfvWpapti8g88vVVGp2qqtGyePsSuDa
 github.com/andybalholm/brotli v1.0.0/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/ashtyn3/zi v0.0.0-20201028192814-914600eeb19e h1:QVa9wApskvX7U+MzWCPT1IEaBIIjpqWHIzfd11FncrM=
 github.com/ashtyn3/zi v0.0.0-20201028192814-914600eeb19e/go.mod h1:883VozWuoJsYuq6Xon/0Omvh18DuF9HdhfQdERcOHq4=
+github.com/ashtyn3/zi v0.0.0-20201206233142-313bfc88af51 h1:xxS0ecGZqdLN8ClKmuRGORqfYaay7wF/OWGGJVT/bak=
+github.com/ashtyn3/zi v0.0.0-20201206233142-313bfc88af51/go.mod h1:883VozWuoJsYuq6Xon/0Omvh18DuF9HdhfQdERcOHq4=
 github.com/bradfitz/goimports v0.0.0-20141211234242-919f4f2bcea0 h1:TQz69uMXMJrR0Agp3kNhG6hpMmqOuUoxpLntbHj850g=
 github.com/bradfitz/goimports v0.0.0-20141211234242-919f4f2bcea0/go.mod h1:5Gk++YnYbTwQNvA0bQ4Xcaw1TvtW6jcs39o4Jyez75E=
 github.com/common-nighthawk/go-figure v0.0.0-20200609044655-c4b36f998cf2/go.mod h1:mk5IQ+Y0ZeO87b858TlA645sVcEcbiX6YqP98kt+7+w=
