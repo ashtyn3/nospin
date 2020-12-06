@@ -3,6 +3,7 @@ package zi
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -77,6 +78,7 @@ func Zi(u string, auth string) (ZI, error) {
 		defer data.Body.Close()
 
 		body, err := ioutil.ReadAll(data.Body)
+		fmt.Println(string(body))
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -100,7 +102,7 @@ func Zi(u string, auth string) (ZI, error) {
 		defer data.Body.Close()
 		return "OK"
 	}, GetAll: func() []api.Pair {
-		u := url + "/getall" + "?auth=" + auth
+		u := url + "/getall" + "&auth=" + auth
 		data, err := http.Get(u)
 		if err != nil {
 			log.Fatal(err)
