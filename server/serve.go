@@ -74,7 +74,6 @@ func Run() {
 		return c.SendString(string(content))
 
 	})
-
 	fmt.Println("listening on 3000")
 	app.Listen(":3000")
 }
