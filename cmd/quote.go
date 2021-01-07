@@ -42,7 +42,6 @@ func main() {
 		fmt.Println("    -user, -u                                              Prints information about current user.")
 		fmt.Println("    -serve, -S                                             Starts web interface server on port 3000.")
 		fmt.Println("    -share, -s string < -add string | -remove string>      Takes -add or -remove flag for adding or removing user from file group.")
-
 	}
 	for _, v := range Args {
 		if v.Flag == "-auth" {
