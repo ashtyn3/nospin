@@ -13,6 +13,7 @@ type Credentials struct {
 
 func Auth() Credentials {
 	godotenv.Load("../.env")
+
 	// @zap var: url
 	var Url string = os.Getenv("url")
 
