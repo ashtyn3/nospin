@@ -59,7 +59,7 @@ func Set(path string, endPath string, options Ops) {
 				// item, _ := json.Marshal(data)
 				fID, _ := util.RanString(6)
 				if data.Image == true {
-					d := util.ChunkString(string(data.Content), 2000)
+					d := util.ChunkString(string(data.Content), 1000)
 					for i, c := range d {
 						fmt.Printf("\r\033[K%d/%d", i+1, len(d))
 						data = File{Content: []byte(c), Name: endPath, ID: user.ID, Group: user.PrvTok, Image: image}
