@@ -4,7 +4,6 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	"qoute/config"
 )
 
 type Credentials struct {
@@ -13,7 +12,7 @@ type Credentials struct {
 }
 func Auth() Credentials {
 	godotenv.Load("../.env")
-	url := config.Get("url")	
+	url := getConfigItem("url")	
 	if url == "" {
 		// @zap var: url
 		var Url string = os.Getenv("url")
@@ -22,10 +21,11 @@ func Auth() Credentials {
 		var Pd string = os.Getenv("pd")
 		return Credentials{Url: Url, Pd: Pd}
 	} else if url != "" {
-		url := config.Get("url")
-		pd := config.Get("pd")
+		url := getConfigItem("url")
+		pd := getConfigItem("pd")
 		return Credentials{Url: url, Pd: pd}
 	}
+	return Credentials{}
 }
 
 var _ string = os.Getenv("url")

@@ -5,7 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
-	args "qoute/arg-parser"
+	args "quote/arg-parser"
 )
 
 func GenBytes(n int) ([]byte, error) {

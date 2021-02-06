@@ -1,4 +1,4 @@
-module qoute
+module quote
 
 go 1.15
 

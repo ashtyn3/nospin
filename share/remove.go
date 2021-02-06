@@ -3,9 +3,9 @@ package share
 import (
 	"fmt"
 	"os"
-	"qoute/file"
-	"qoute/user"
-	"qoute/util"
+	"quote/file"
+	"quote/user"
+	"quote/util"
 	"strings"
 )
 

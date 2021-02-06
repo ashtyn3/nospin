@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 	"os/user"
-	us "qoute/user"
+	us "quote/user"
 	"strings"
 )
 
@@ -16,7 +16,7 @@ func New(u us.User) {
 		log.Fatal(err)
 	}
 	home := usr.HomeDir
-	os.Mkdir(home+"/.qoute", 0777)
+	os.Mkdir(home+"/.quote", 0777)
 	f, _ := os.OpenFile(home+"/.quote/config", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	f.WriteString("name=" + u.ID)
 }

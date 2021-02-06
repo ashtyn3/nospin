@@ -2,8 +2,8 @@ package share
 
 import (
 	"fmt"
-	"qoute/file"
-	"qoute/user"
+	"quote/file"
+	"quote/user"
 	"strings"
 )
 
