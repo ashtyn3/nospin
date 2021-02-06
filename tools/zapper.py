@@ -1,7 +1,9 @@
 import subprocess as sub
 import os 
 import getpass
-
+from dotenv import load_dotenv
+import os.path
+import shutil
 def git_clone(url):
     proc = sub.Popen(['git', 'clone', '--progress',url],
         stdout=sub.PIPE,
@@ -27,15 +29,30 @@ except Exception:
     #path = 'GOPATH='+os.environ["GOPATH"]
     print("entering zap/cmd")
     print("building zap")
-    sub.run('cd zap/cmd && pwd && go build',shell=True)
-    os.environ["zap"] = "zap/cmd/./cmd"
+    os.chdir("zap/cmd")
+    sub.run('go build',shell=True)
     print("leaving zap/cmd")
-    print("entering ../")
-    url = input("url to server: ")
-    pd = getpass.getpass(prompt='password to server: ')
+    url = ""
+    pd = ""
+    if os.path.isfile("../../../.env"):
+        if input("Build with credentials in .env file [y/n]: ") == "y":
+            load_dotenv(dotenv_path="../../../.env")
+            url = os.environ["url"]
+            pd = os.environ["pd"]
+        else:
+            url = input("url to server: ")
+            pd = getpass.getpass(prompt='password to server: ')
     print("building with credentials")
-    sub.run('cd ../cmd && pwd && ../tools/zap/cmd/./cmd -env pd='+pd+',url='+url+" -in ../auth/auth.go",shell=True,env=os.environ)
+    print("entering ../cmd")
+    os.chdir("../../../cmd")
+    sub.call('../tools/zap/cmd/cmd -env pd='+pd+',url='+url+" -in ../auth/auth.go",shell=True,env=os.environ)
     print("moving build to bin")
-    sub.run('mkdir ../bin && mv ../cmd/cmd ../bin/qt',shell=True)
+    if os.path.isdir("../bin"):
+        shutil.rmtree("../bin")
+    os.mkdir("../bin")
+    os.rename("cmd", "../bin/qt")
+    print("leaving cmd")
+    print("entering ../tools")
+    os.chdir("../tools")
     print("Cleaning up")
-    sub.run('sudo rm -r zap',shell=True)
+    shutil.rmtree("zap")
